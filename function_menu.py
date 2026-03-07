@@ -3,6 +3,7 @@ def menu():
     print("========================================================================")
     print("\n  MENU PRINCIPAL")
     print("1- Afficher le graphe initial")
+    print("2- Trouver le plus court chemin entre tous les couples de sommets à l'aide de Floyd-Warshall")
     print("7- Revenir en arrière")
     print("0- Quitter")
     return input("Votre choix : ")

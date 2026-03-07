@@ -1,3 +1,5 @@
+import copy
+
 def afficher_matrice(matrice):
     nb_sommets = len(matrice)
     result = []
@@ -39,7 +41,7 @@ def afficher_matrice(matrice):
         
         # 4. Ligne de séparation après chaque ligne de données
         result.append(ligne_sep_donnees)
-        
+
     return "\n".join(result) + "\n"
 
 def lecture_graphe(fichier):
@@ -74,3 +76,58 @@ def lecture_graphe(fichier):
 
     # Le graphe lu est stocké dans une structure de données unique [cite: 21]
     return tableau
+
+def floyd_warshall(matrice):
+    L = copy.deepcopy(matrice)
+    P = [[None for _ in range(len(L))] for _ in range(len(L))]
+    
+    determiner_matrices_l_et_p(L, P)
+
+    afficher_chemins(L, P)
+
+
+
+def determiner_matrices_l_et_p(L, P):
+    n = len(L)
+    
+    for k in range(n):
+        L[k][k] = min(L[k][k], 0)  # Assure que la distance d'un sommet à lui-même est au plus 0
+
+    # initialisation matrice prédecesseur
+    for i in range(n):
+        for j in range(n):
+            if L[i][j] != float('inf') and i!=j:
+                P[i][j] = i
+
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if i==k or j==k:
+                    continue
+
+                if L[i][k] + L[k][j] < L[i][j]:
+                    L[i][j] = L[i][k] + L[k][j]
+                    P[i][j] = P[k][j]  # correspond au dernier arrêt avant d'arriver au noeud j, ce qui va être utile pour la remontée lors de la reconstruction des chemins
+
+    return L, P
+
+
+def afficher_chemins(L, P):
+    n=len(L)
+
+    for i in range(n):
+        for j in range(n):
+            if L[i][j] != float('inf') and i!=j:
+                temp=j
+                print(f"Noeud {i} vers Noeud {j}; Coût : {L[i][j]}, Chemin : {i} -> ", end="")
+                
+                P_noeud_actuel = []
+                while P[i][temp] != i:
+                    P_noeud_actuel.append(P[i][temp])
+                    temp=P[i][temp]
+                
+                for k in range(len(P_noeud_actuel)-1, -1, -1):
+                    print(f"{P_noeud_actuel[k]} -> ", end="")
+
+                print(j)
+

@@ -12,6 +12,13 @@ while continuer != False:
             # Revient au choix du graphe
 
             break
+        
+        elif choix == '2':
+            # Graphe initial
+
+            print("\nFloyd-Warshall : ")
+            floyd_warshall(Table_Graphe)
+
 
         elif choix == '1':
             # Graphe initial
