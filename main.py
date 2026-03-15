@@ -8,7 +8,7 @@ while continuer != False:
     while continuer:
         choix = menu()
         print("========================================================================")
-        if choix == '7':
+        if choix == '3':
             # Revient au choix du graphe
 
             break
