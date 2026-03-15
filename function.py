@@ -77,13 +77,21 @@ def lecture_graphe(fichier):
     # Le graphe lu est stocké dans une structure de données unique [cite: 21]
     return tableau
 
+def contient_circuit_absorbant(L):
+    for i in range(len(L)):
+        if L[i][i] < 0:
+            return True
+    return False
+
 def floyd_warshall(matrice):
     L = copy.deepcopy(matrice)
     P = [[None for _ in range(len(L))] for _ in range(len(L))]
-    
     determiner_matrices_l_et_p(L, P)
 
-    afficher_chemins(L, P)
+    if contient_circuit_absorbant(L):
+        print("Le graphe contient un circuit absorbant. L'algorithme de Floyd-Warshall ne peut pas être appliqué.")
+    else:
+        afficher_chemins(L, P)
 
 
 
@@ -98,36 +106,65 @@ def determiner_matrices_l_et_p(L, P):
         for j in range(n):
             if L[i][j] != float('inf') and i!=j:
                 P[i][j] = i
-
     for k in range(n):
         for i in range(n):
             for j in range(n):
-                if i==k or j==k:
-                    continue
-
                 if L[i][k] + L[k][j] < L[i][j]:
                     L[i][j] = L[i][k] + L[k][j]
                     P[i][j] = P[k][j]  # correspond au dernier arrêt avant d'arriver au noeud j, ce qui va être utile pour la remontée lors de la reconstruction des chemins
-
     return L, P
 
 
 def afficher_chemins(L, P):
-    n=len(L)
-
-    for i in range(n):
-        for j in range(n):
-            if L[i][j] != float('inf') and i!=j:
-                temp=j
-                print(f"Noeud {i} vers Noeud {j}; Coût : {L[i][j]}, Chemin : {i} -> ", end="")
+    n = len(L)
+    print("\n--- Consultation des plus courts chemins ---")
+    
+    while True:
+        chemin_reponse = input("Chemin ? (oui/non) : ").strip().lower()
+        
+        if chemin_reponse in ['oui', 'o', 'y']:
+            try:
+                depart = int(input(f"Sommet de départ (0 à {n-1}) ? "))
+                arrivee = int(input(f"Sommet d'arrivée (0 à {n-1}) ? "))
                 
-                P_noeud_actuel = []
-                while P[i][temp] != i:
-                    P_noeud_actuel.append(P[i][temp])
-                    temp=P[i][temp]
+                if 0 <= depart < n and 0 <= arrivee < n:
+                    afficher_un_chemin(L, P, depart, arrivee)
+                else:
+                    print(f"Erreur : Les sommets doivent être compris entre 0 et {n-1}.")
+            except ValueError:
+                print("Erreur : Veuillez entrer des numéros valides.")
                 
-                for k in range(len(P_noeud_actuel)-1, -1, -1):
-                    print(f"{P_noeud_actuel[k]} -> ", end="")
+            recommencer = input("Recommencer ? (oui/non) : ").strip().lower()
+            if recommencer not in ['oui', 'o', 'y']:
+                print("Fin de la consultation des chemins.")
+                break
+                
+        else:
+            print("Fin de la consultation.")
+            break
 
-                print(j)
+def afficher_un_chemin(L, P, depart, arrivee):
+    """Reconstitue et affiche le chemin entre deux sommets précis."""
+    if L[depart][arrivee] == float('inf'):
+        print(f"Aucun chemin n'existe entre le Noeud {depart} et le Noeud {arrivee}.")
+        return
+
+    print(f"Coût : {L[depart][arrivee]}, Chemin : {depart} -> ", end="")
+    
+    if depart == arrivee:
+        print(f"{arrivee}")
+        return
+
+    temp = arrivee
+    P_noeud_actuel = []
+    
+    while P[depart][temp] != depart:
+        P_noeud_actuel.append(P[depart][temp])
+        temp = P[depart][temp]
+    
+    for k in range(len(P_noeud_actuel)-1, -1, -1):
+        print(f"{P_noeud_actuel[k]} -> ", end="")
+
+    print(arrivee)
+
 
