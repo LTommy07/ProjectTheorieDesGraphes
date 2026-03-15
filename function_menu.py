@@ -26,5 +26,5 @@ def charger_graphe():
     #Lecture Graphe
     numero_graphe = choisir_graphe()
     print("Graphe utilisé: " + str(numero_graphe) + "\n")
-    Table_Graphe=lecture_graphe("Graphe"+str(numero_graphe)+".txt")
+    Table_Graphe=lecture_graphe("Graphes\Graphe"+str(numero_graphe)+".txt")
     return Table_Graphe
