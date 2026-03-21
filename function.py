@@ -97,9 +97,10 @@ def floyd_warshall(matrice):
 
 def determiner_matrices_l_et_p(L, P):
     n = len(L)
-    
+
     for k in range(n):
-        L[k][k] = min(L[k][k], 0)  # Assure que la distance d'un sommet à lui-même est au plus 0
+        if L[k][k] == float('inf'):
+            L[k][k] = 0  # Assure que la distance d'un sommet à lui-même est au plus 0
 
     # initialisation matrice prédecesseur
     for i in range(n):
