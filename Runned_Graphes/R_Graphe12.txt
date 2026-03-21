@@ -1,0 +1,72 @@
+ ==== CHOIX DU GRAPHE ====
+Veuillez saisir le numéro du graphe à utiliser :
+Les numéros des graphes vont de 1 à 14 (14 pour le problème réel)
+Numéro du graphe que vous voulez :
+12
+Graphe utilisé: 12
+
+========================================================================
+
+  MENU PRINCIPAL
+1- Afficher le graphe initial
+2- Trouver le plus court chemin entre tous les couples de sommets à l'aide de Floyd-Warshall
+3- Revenir en arrière
+0- Quitter
+Votre choix : 1
+========================================================================
+
+Affichage du graphe :
+        __________________________________
+       |  0   |  1   |  2   |  3   |  4   |
+ ______|______|______|______|______|______|
+|  0   |      |      |  2   |  1   |      |
+|______|______|______|______|______|______|
+|  1   |  1   |      |      |      |  1   |
+|______|______|______|______|______|______|
+|  2   |      |      |      |  -2  |      |
+|______|______|______|______|______|______|
+|  3   |      |      |  7   |      |  4   |
+|______|______|______|______|______|______|
+|  4   |      |  3   |  -1  |      |      |
+|______|______|______|______|______|______|
+
+========================================================================
+
+  MENU PRINCIPAL
+1- Afficher le graphe initial
+2- Trouver le plus court chemin entre tous les couples de sommets à l'aide de Floyd-Warshall
+3- Revenir en arrière
+0- Quitter
+Votre choix : 2
+========================================================================
+
+Floyd-Warshall :
+
+--- Consultation des plus courts chemins ---
+Chemin ? (oui/non) : oui
+Sommet de départ (0 à 4) ? 3
+Sommet d'arrivée (0 à 4) ? 1
+Coût : 7, Chemin : 3 -> 4 -> 1
+Recommencer ? (oui/non) : oui
+Chemin ? (oui/non) : oui
+Sommet de départ (0 à 4) ? 0
+Sommet d'arrivée (0 à 4) ? 1
+Coût : 7, Chemin : 0 -> 2 -> 3 -> 4 -> 1
+Recommencer ? (oui/non) : oui
+Chemin ? (oui/non) : oui
+Sommet de départ (0 à 4) ? 2
+Sommet d'arrivée (0 à 4) ? 0
+Coût : 6, Chemin : 2 -> 3 -> 4 -> 1 -> 0
+Recommencer ? (oui/non) : non
+Fin de la consultation des chemins.
+========================================================================
+
+  MENU PRINCIPAL
+1- Afficher le graphe initial
+2- Trouver le plus court chemin entre tous les couples de sommets à l'aide de Floyd-Warshall
+3- Revenir en arrière
+0- Quitter
+Votre choix : 0
+========================================================================
+
+Merci, à bientôt !

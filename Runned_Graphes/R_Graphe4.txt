@@ -1,0 +1,53 @@
+ ==== CHOIX DU GRAPHE ====
+Veuillez saisir le numéro du graphe à utiliser :
+Les numéros des graphes vont de 1 à 14 (14 pour le problème réel)
+Numéro du graphe que vous voulez :
+4
+Graphe utilisé: 4
+
+========================================================================
+
+  MENU PRINCIPAL
+1- Afficher le graphe initial
+2- Trouver le plus court chemin entre tous les couples de sommets à l'aide de Floyd-Warshall
+3- Revenir en arrière
+0- Quitter
+Votre choix : 1
+========================================================================
+
+Affichage du graphe :
+        ___________________________
+       |  0   |  1   |  2   |  3   |
+ ______|______|______|______|______|
+|  0   |      |  1   |  -5  |      |
+|______|______|______|______|______|
+|  1   |      |      |  -3  |  2   |
+|______|______|______|______|______|
+|  2   |      |  -1  |      |  2   |
+|______|______|______|______|______|
+|  3   |      |      |      |      |
+|______|______|______|______|______|
+
+========================================================================
+
+  MENU PRINCIPAL
+1- Afficher le graphe initial
+2- Trouver le plus court chemin entre tous les couples de sommets à l'aide de Floyd-Warshall
+3- Revenir en arrière
+0- Quitter
+Votre choix : 2
+========================================================================
+
+Floyd-Warshall :
+Le graphe contient un circuit absorbant. L'algorithme de Floyd-Warshall ne peut pas être appliqué.
+========================================================================
+
+  MENU PRINCIPAL
+1- Afficher le graphe initial
+2- Trouver le plus court chemin entre tous les couples de sommets à l'aide de Floyd-Warshall
+3- Revenir en arrière
+0- Quitter
+Votre choix : 0
+========================================================================
+
+Merci, à bientôt !
